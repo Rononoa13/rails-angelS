@@ -27,6 +27,24 @@ class Api::V1::ContentsController < ApplicationController
         end
     end
     
+    def index
+        contents = @current_user.contents
+        render json: {
+            data: contents.map do |content|
+                {
+                    id: content.id,
+                    type: "content",
+                    attributes: {
+                        title: content.title,
+                        body: content.body,
+                        createdAt: content.created_at,
+                        updatedAt: content.updated_at
+                    }
+                }
+            end
+        }, status: :ok
+    end
+    
     private
 
     def content_params
