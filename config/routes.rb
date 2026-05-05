@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       post "users/signup", to: "auth#signup"
       post "auth/signin", to: "auth#signin"
       # 
-      resources :contents, only: [:create, :update]
+      resources :contents, only: [:create, :update, :destroy]
       get  "content",  to: "contents#index"
     end
   end
