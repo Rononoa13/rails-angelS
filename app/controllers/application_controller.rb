@@ -17,5 +17,30 @@ class ApplicationController < ActionController::Base
   rescue
     nil
   end
+  ##############################
+  #### Authentication Layer ####
+  ##############################
+
+  def current_user
+    auth_header = request.headers["Authorization"]
+    return nil unless auth_header
+
+    token = auth_header.split(" ").last
+    decoded = decode_token(token)
+
+    return nil unless decoded
+
+    User.find_by(id: decoded[:user_id])
+  end
+  
+  def authorize_user
+    user = current_user
+
+    if user.nil?
+      render json: { error: "Unauthorized" }, status: :unauthorized
+    else
+      @current_user = user
+    end
+  end
   
 end
