@@ -4,7 +4,8 @@ Rails.application.routes.draw do
       post "users/signup", to: "auth#signup"
       post "auth/signin", to: "auth#signin"
       # 
-      resources :contents, only: [:create]
+      post "contents", to: "contents#create"
+      get  "content",  to: "contents#index"
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
