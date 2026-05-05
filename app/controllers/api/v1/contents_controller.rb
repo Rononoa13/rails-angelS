@@ -1,7 +1,8 @@
 class Api::V1::ContentsController < ApplicationController
     skip_before_action :verify_authenticity_token
     before_action :authorize_user #What is this?
-
+    before_action :set_content, only: [:update]
+    
     def create
         content = Content.new(content_params)
         content.user = @current_user
@@ -45,7 +46,28 @@ class Api::V1::ContentsController < ApplicationController
         }, status: :ok
     end
     
+    def update
+        if @content.user_id != @current_user.id
+            render json: { error: "Forbidden" }, status: :forbidden
+        return
+        end
+
+        if @content.update(content_params)
+            render json: { message: "Content updated", data: @content }
+        else
+            render json: { errors: @content.errors.full_messages }
+        end
+    end
+
     private
+
+    def set_content
+        @content = @current_user.contents.find_by(id: params[:id])
+
+        unless @content
+            render json: { error: "Not found or not authorized" }, status: :not_found
+        end
+    end
 
     def content_params
         params.permit(:title, :body)
