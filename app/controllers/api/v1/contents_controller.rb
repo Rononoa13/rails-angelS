@@ -1,7 +1,7 @@
 class Api::V1::ContentsController < ApplicationController
     skip_before_action :verify_authenticity_token
     before_action :authorize_user #What is this?
-    before_action :set_content, only: [:update]
+    before_action :set_content, only: [:update, :destroy]
     
     def create
         content = Content.new(content_params)
@@ -57,6 +57,11 @@ class Api::V1::ContentsController < ApplicationController
         else
             render json: { errors: @content.errors.full_messages }
         end
+    end
+
+    def destroy
+        @content.destroy
+        render json: { message: "Deleted" }
     end
 
     private
