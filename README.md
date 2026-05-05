@@ -1,24 +1,69 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 📚 Ruby on Rails API - User & Content Management System
 
-Things you may want to cover:
+A simple RESTful API built with Ruby on Rails that provides:
 
-* Ruby version
+- User authentication (Signup / Signin)
 
-* System dependencies
+- JWT-based authorization
 
-* Configuration
+- Content creation and management
 
-* Database creation
+- Ownership-based access control
 
-* Database initialization
+---
 
-* How to run the test suite
+# 🚀 Tech Stack
 
-* Services (job queues, cache servers, search engines, etc.)
+- Ruby on Rails (API mode)
 
-* Deployment instructions
+- PostgreSQL
 
-* ...
+- JWT Authentication
+
+- RSpec (testing)
+
+- Postman (API testing)
+
+---
+
+# 📦 Features
+
+## 👤 User
+
+- Signup user
+
+- Signin user
+
+- JWT token generation on login
+
+## 📝 Content
+
+- Create content (authenticated users only)
+
+- View all own contents
+
+- Update own content only
+
+- Delete own content only
+
+---
+
+# 🛠️ Setup Instructions
+
+## 1. Clone the repository
+
+## 2. Install dependencies
+
+- bundle install
+
+## 3. Setup database
+
+- rails db:create
+
+- rails db:migrate
+
+## 3. Start the server
+
+- rails s
