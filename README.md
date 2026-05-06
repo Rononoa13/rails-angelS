@@ -85,4 +85,6 @@ Access the Application
 
 - http://localhost:3000
 
-  Manually Run the `db:migrate` in another terminal
+Manually Run the migration in another terminal with following command
+  - `docker compose exec web rails db:create`
+  - `docker compose exec web rails db:migrate`
