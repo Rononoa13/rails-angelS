@@ -88,3 +88,9 @@ Access the Application
 Manually Run the migration in another terminal with following command
   - `docker compose exec web rails db:create`
   - `docker compose exec web rails db:migrate`
+
+# TODOs
+
+- Unit Test for Content Controller
+
+- Deployment
